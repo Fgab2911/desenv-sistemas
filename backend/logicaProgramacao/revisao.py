@@ -24,4 +24,26 @@ if (salario >5000):
 elif (salario <5000):
     imposto = 0.05 * salario
 
-print("imposto", imposto)
+print("imposto", imposto)  
+
+
+
+
+soma = 0
+for i in range(1, 21):
+    soma += i
+
+print(f'A soma dos números de 1 a 20 é: {soma}')
+
+soma_usuario = 0
+
+while True:
+    try:
+        numero = int(input('Digite um número (ou 0 para parar): '))
+        if numero == 0:
+            break
+        soma_usuario += numero
+    except ValueError:
+        print("Por favor, digite um número válido.")
+
+print(f'A soma dos números digitados é: {soma_usuario}')

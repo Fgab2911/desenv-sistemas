@@ -23,7 +23,7 @@ fala = False
 print("nome:", nome)
 print("sobrenome:", sobrenome)
 print("idade:", idade)
-print("quastas_kils:", quantas_kils)
+print("quantas_kils:", quantas_kils)
 print("peso:", peso)
 print("altura:", altura)
 print("selvagem?", selvagem)

@@ -1,28 +1,72 @@
-#trabalhando com json - explicação_json.py
+# {} -> chaves: definir um objeto -> ficha de cadastro 
+#                                   pessoa -nome, cpf, tel
+# [] -> colchete: definir uma lista 
+# chave/ valor: chave descreve o valor
+#               "telefone"      "4499999-9999"
+# sempre vai importar o json
 
-#{} - chaves: definir um objeto - ficha de cadastro
-#[] - colchete: definir uma lista
-# chave/valor: descreve o valor
-#sempre importar seu json
 
-import json
+import json 
 inventario = []
+# lendo o arquivo
+try:
+    with open("loja.json", "r") as arquivo:
+        inventario = json.load(arquivo)
+except FileNotFoundError:
+    print("arquivo nao encontrado")
+    
+try:
+    id = int(input("digite o id do produto"))
+    nome = input("Digite o Nome Do Produto: ")
+    quantidade = int(input("Digite a Quantidade: "))
+    preco = float(input("Digite o Preço: "))
+
+except ValueError:
+    print("Digite o Valor Corretamente")
+    
+# montar o objeto 
+novo_produto = {
+                "id": id,
+                "nome": nome,
+                "quantidade":quantidade,
+                "preco": preco,
+                "em_estoque": quantidade > 0 #expressao verdadeiro falso
+                }
+
+# escrever o objeto no arquivo
+inventario.append (novo_produto)
+with open ("loja.json", "w") as arquivo:
+    json.dump(inventario, arquivo, indent =4)
+    #indent -> formatar o arquivo json
+print("produto cadastrado com sucesso")
+
+# modificar produto no Json 
+#id -> identificador
+# pao da vo neuza - 1
+# pao dona benta - 2
+# -----modificar produto-----
+
+id_produto_modificar = int(input("digite o id para modificar"))
+nova_quantidade = int(input("digite a nova quantidade"))
+
 try:
     with open("loja.json", "r")as arquivo:
         inventario = json.load(arquivo)
 except FileNotFoundError:
-    prin("arquivo não encontrado")
-try:
-    nome = input("digite o nome do produto")
-    quantidade = int(input("digite a quantidade"))
-    preço = float(input("digite o preço"))
-    except ValueError:
-        print("digite o valor corretamente")
-# montar o objeto
-nome_produto = {"nome"; nome, "quantidade": quantidade, "preço": preco, "em_estoque": quantidade > 0 } #expressao verdadeira ou falsa
-#escrever o objeto no arquivo
-inventario.append(novo_produto)
-with open("loja.json", "w")as arquivo:
-    json.dump(inventario, arquivo, indent = 4)
-    #indent - formatar o arquivo json
-    print("produto cadastrado com sucesso")
+    print("arquivo nao encontrado")
+
+produto_encontrado = False
+for produto in inventario:
+    if produto["id"] = = id_produto_modificar:
+        #colocamos a nova quantidade
+        produto["quantidade"] = nova_quantidade
+        produto["em_estoque"] = nova_quantidade >0
+        produto_encontrado = True
+        break;
+
+if not produto_encontrado:
+    print("o pruduto com o id informado não foi encontrado")
+else: 
+    with open("loja.json", "w")as arquivo:
+        json.dump(inventario, arquivo, indent = 4)
+        print("o arquivo foi alterado com sucesso!!")
